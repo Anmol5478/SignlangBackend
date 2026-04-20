@@ -19,15 +19,17 @@ def init_mediapipe():
 
     if mp_hands is None:
         try:
-            import mediapipe as mp
-from mediapipe.python.solutions import hands as mp_hands
-from mediapipe.python.solutions import drawing_utils as mp_drawing
+            from mediapipe.python.solutions import hands as mp_hands_local
+            from mediapipe.python.solutions import drawing_utils as mp_drawing
+
+            mp_hands = mp_hands_local  # assign to global
 
             hands_detector = mp_hands.Hands(
                 static_image_mode=True,
                 max_num_hands=1,
                 min_detection_confidence=0.5,
             )
+
         except Exception as e:
             print(f"Failed to initialize MediaPipe: {e}")
             raise
