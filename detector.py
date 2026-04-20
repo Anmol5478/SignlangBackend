@@ -20,7 +20,8 @@ def init_mediapipe():
     if mp_hands is None:
         try:
             import mediapipe as mp
-            mp_hands = mp.solutions.hands
+from mediapipe.python.solutions import hands as mp_hands
+from mediapipe.python.solutions import drawing_utils as mp_drawing
 
             hands_detector = mp_hands.Hands(
                 static_image_mode=True,
